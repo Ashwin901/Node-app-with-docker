@@ -6,6 +6,9 @@ services:
       - "3000:3000"
     environment:
       - PORT=3000
+    # depends_on tells docker to build mongo container before our node_app
+    depends_on:
+      - mongo
 
   mongo:
     image: mongo
