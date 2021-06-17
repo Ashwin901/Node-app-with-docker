@@ -39,7 +39,7 @@ try {
   setTimeout(connect, 5000);
 }
 
-
+app.enable("trust proxy");
 app.use(session({
   store: new RedisStore({client: redisClient}),
   secret:SESSION_SECRET,
