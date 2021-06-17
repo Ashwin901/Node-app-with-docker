@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const redis = require("redis");
+const cors = require("cors");
 const { MONGO_IP, MONGO_PORT, MONGO_USER, MONGO_PASSWORD, REDIS_URL, REDIS_PORT, SESSION_SECRET } = require("./config/config");
 
 let RedisStore = require("connect-redis")(session);
@@ -40,6 +41,7 @@ try {
 }
 
 app.enable("trust proxy");
+app.use(cors({}));
 app.use(session({
   store: new RedisStore({client: redisClient}),
   secret:SESSION_SECRET,
